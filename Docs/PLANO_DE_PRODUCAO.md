@@ -1,143 +1,140 @@
 # Lumina RPG — Plano de produção
 
-**Versão:** 1.0  
-**Data de referência:** 03/11/2026  
-**Estado:** plano inicial; decisões visuais e de escopo continuam sujeitas à validação do proprietário.
+**Versão:** 2.0  
+**Data de atualização:** 03/11/2026  
+**Estado:** decisão de reconstrução em Unity definida; instalação do Editor ainda pendente.
 
 ## 1. Objetivo
 
-Construir Lumina RPG como um RPG 3D de fantasia, explorável e single-player, evoluindo o protótipo existente sem recomeçar do zero. A prioridade é ter um pequeno trecho de jogo completo, estável e divertido antes de ampliar o mapa, o elenco ou a quantidade de sistemas.
+Construir Lumina RPG como um RPG 3D de fantasia single-player. A estrutura de telas, o fluxo de entrada no mundo, a primeira região, o combate e a produção em etapas serão reconstruídos tomando World of Oldcraft como referência próxima. O resultado será gradualmente adaptado à identidade própria do Lumina.
 
-## 2. Princípios do projeto
+A referência serve para orientar escopo, organização e qualidade. O Lumina terá implementação própria, nomes, história, personagens, mundo e identidade visual próprios.
 
-1. **Gratuito de verdade:** nenhum serviço pago, assinatura, crédito, API paga, asset pago ou chave comercial é requisito para desenvolver, executar ou compilar o jogo.
-2. **Preservar o que funciona:** continuar com Python + Ursina + Panda3D enquanto atender às necessidades do projeto.
-3. **Jogo antes de conteúdo:** primeiro um ciclo jogável; depois variedade, quantidade e acabamento.
-4. **Uma mudança por vez:** cada tarefa tem objetivo, teste e critério de conclusão.
-5. **Nada de falso concluído:** distinguir implementado, testado localmente e aprovado pelo proprietário.
-6. **Originalidade:** usar referências apenas como inspiração. O mundo, nomes, personagens, mapas, interface e identidade do Lumina devem ser próprios.
-7. **Rastreabilidade:** registrar origem/licença de cada asset externo e guardar checkpoints no Git.
+## 2. Decisões de tecnologia e preservação
 
-## 3. Estado inicial conhecido
+- **Motor principal escolhido:** Unity 6000.5.9f1 + Universal 3D (URP), conforme o Build Kit analisado.
+- **Projeto Unity planejado:** D:\Unity\Projects\Lumina-Unity.
+- **Protótipo anterior:** Python + Ursina + Panda3D em D:\rpg-Lumina. Deve permanecer intacto como referência e backup.
+- **Custo externo:** objetivo de R$ 0; não depender de API paga, assinatura, créditos de geração nem assets pagos.
+- **Ferramentas auxiliares gratuitas:** Blender, Krita/GIMP, Audacity, Git e FFmpeg, conforme necessidade e respectivas licenças.
+- **Assets:** preferir modelos, texturas, sons e músicas CC0 ou com licença gratuita compatível; registrar fonte, autor e licença.
+- **Oldcraft:** a build recebida é compilada para Windows; o Build Kit contém especificações, regras e scripts auxiliares, não o projeto Unity completo nem o código C# do jogo. Não tratar o pacote como código-fonte recuperável.
 
-Com base no histórico de desenvolvimento disponível em 03/11/2026:
+## 3. Originalidade e limites de reutilização
 
-- Stack: Python, Ursina Engine e Panda3D.
-- Ambiente de Python: 3.12.
-- Modelos Quaternius já organizados em `assets/models/characters/`: Knight_Male, Wizard, Elf, Viking_Male, Ninja_Male e Soldier_Male, em GLTF.
-- O arquivo `LICENSE-CC0.txt` acompanha esse conjunto de modelos.
-- Os GLTFs testados expõem 17 animações, incluindo Idle, Walk, Run, Jump, SwordSlash, Death e Victory.
-- `teste_pbr_panda.py` e `teste_ursina_pbr.py` foram usados em testes de renderização.
-- `teste_espada.py` demonstrou uma espada criada com geometria Ursina e conectada ao osso `Fist.R` do cavaleiro.
-- O protótipo original de `main.py` ainda precisa ser integrado com o carregamento GLTF/PBR mais recente.
-- Não considerar o protótipo como jogo completo: movimentação final, câmera, combate, inimigos, progressão, salvamento, mapa e interface ainda precisam ser integrados e validados.
+Usar o relatório, as filmagens, os conceitos e o Build Kit como referência de processo, organização, escopo e apresentação. Não extrair nem reutilizar código, modelos, texturas, interface, marcas, mapas ou outros materiais protegidos de um jogo comercial sem licença/autorização.
 
-**Atenção:** este estado é uma linha de base documental, não uma inspeção da pasta local nesta sessão. Antes de modificar código, o proprietário deve confirmar o estado da cópia local com Git e executar os testes existentes.
+É permitido reconstruir, com código próprio e recursos autorizados, sistemas comuns de RPG: seleção de personagem, câmera em terceira pessoa, movimentação, combate, inimigos, XP, missões, HUD, cidades e regiões exploráveis.
 
-## 4. Definição da primeira versão jogável (MVP)
+## 4. Linha de base preservada do protótipo Ursina
 
-A primeira versão deve permitir:
+O repositório atual contém:
+- Python + Ursina + Panda3D.
+- Seis modelos Quaternius GLTF em assets/models/characters, com LICENSE-CC0.txt.
+- teste_pbr_panda.py: o proprietário relatou uma animação que parece queda/desmaio, sem espada.
+- teste_ursina_pbr.py: o proprietário relatou animações de andar, correr e atacar, sem espada.
+- teste_espada.py: o proprietário relatou andar/correr/atacar com espada; é a melhor referência visual atual para arma e personagem.
+- main.py ainda é o protótipo antigo, não integrado.
 
-1. Abrir o jogo sem erro.
-2. Controlar um personagem 3D em terceira pessoa.
-3. Caminhar, correr, saltar e usar animações coerentes.
-4. Ver a arma posicionada corretamente na mão durante as animações.
-5. Encontrar pelo menos um inimigo.
-6. Atacar, causar dano, receber dano e derrotar o inimigo.
-7. Ganhar experiência e subir ao menos um nível.
-8. Explorar uma pequena região com limites físicos claros.
-9. Interagir com pelo menos um NPC ou objeto de missão.
-10. Salvar e carregar o progresso local.
+Esses testes não comprovam controlador de gameplay com deslocamento real, câmera final, colisões, dano, IA ou progressão. O protótipo Ursina permanece separado e não será apagado.
 
-O MVP não exige multiplayer, mundo aberto gigantesco, dezenas de raças/classes, dungeons, crafting ou economia complexa.
+## 5. Primeira fatia jogável
 
-## 5. Etapas e gates
+Prioridade: produzir um caminho pequeno, mas completo:
+1. Inicialização e tela inicial.
+2. Seleção de personagem e entrada no mundo.
+3. Personagem em terceira pessoa com movimento e câmera.
+4. Região inicial greybox com chão, caminho, limites e ponto seguro.
+5. Um inimigo com estados básicos.
+6. Ataques, dano, reação e morte.
+7. XP e primeiro nível.
+8. HUD mínimo para vida, nível, XP e alvo.
+9. Um ponto de interesse ou NPC para demonstrar interação.
 
-### Fase 0 — Base segura e organização
-- Sincronizar a cópia local com o repositório remoto.
-- Confirmar que os testes PBR e da espada abrem.
-- Conferir `.gitignore`, `requirements.txt` e arquivos rastreados.
-- Criar esta documentação e iniciar o DEVLOG.
+Somente depois que o ciclo acima estiver jogável avançar para criação avançada de personagem, cidade maior, mais raças/classes, várias regiões e polimento.
 
-**Gate:** repositório limpo ou com alterações compreendidas; testes existentes reproduzíveis; backup confirmado.
+## 6. Etapas e critérios de avanço
 
-### Fase 1 — Personagem integrado ao jogo
-- Migrar o carregamento GLTF/PBR validado para o fluxo principal.
-- Escolher um personagem inicial (Knight) para o primeiro ciclo.
-- Integrar Idle, Walk e Run; testar Jump se estiver estável.
-- Integrar a espada à mão e ajustar posição/rotação sem atravessar os dedos.
-- Criar câmera de terceira pessoa com rotação, distância e colisão básica.
-- Criar chão, colisões e limites de teste.
+### M0 — Preparação Unity
+- Confirmar Unity Hub e conta.
+- Configurar downloads, Editors e projetos no disco D:.
+- Instalar Unity 6000.5.9f1 e Windows Build Support.
+- Criar projeto Universal 3D (URP).
+- Configurar Git e documentação no novo projeto.
 
-**Gate:** personagem controlável em uma cena principal; sem atravessar o chão; animação e arma aceitáveis em movimento.
+**Gate:** Editor abre o projeto no caminho correto do D:; primeiro commit criado; o protótipo Ursina continua intacto.
 
-### Fase 2 — Primeiro combate
-- Criar um inimigo simples com estados parado, perseguir, atacar e morrer.
-- Implementar vida, dano, alcance, intervalo entre ataques e invulnerabilidade curta após receber golpe, se necessária.
-- Implementar ataque do jogador com feedback visual e sonoro usando recursos gratuitos.
-- Mostrar vida do jogador e inimigo.
+### M1 — Greybox jogável
+- Criar Boot/FrontEnd/Loading/World básicos.
+- Criar jogador provisório, câmera, terreno simples, limites e um inimigo.
+- Implementar o ciclo de entrar no mundo, lutar e chegar ao primeiro ponto seguro.
 
-**Gate:** jogador consegue derrotar um inimigo; inimigo consegue ameaçar o jogador; estados e valores são verificáveis.
+**Gate:** o ciclo básico pode ser concluído sem travamentos, queda infinita ou referências ausentes.
 
-### Fase 3 — Progressão e salvamento
-- Implementar experiência e níveis com fórmula simples e documentada.
-- Fazer atributos influenciarem o combate.
-- Salvar personagem e progresso em JSON local, com validação e backup do save anterior.
-- Testar fechar e reabrir o jogo sem perder o progresso.
+### M2 — Personagem
+- Integrar um personagem completo primeiro.
+- Ajustar rig, animações, arma e câmera.
+- Fazer a primeira tela de seleção/criação com arte provisória.
+- Só expandir o elenco após validar o pipeline em um personagem.
 
-**Gate:** XP, nível e dados persistem após reiniciar.
+**Gate:** o personagem se move, ataca e segura a arma corretamente na Game View.
 
-### Fase 4 — Primeira região explorável
-- Construir um mapa pequeno em blocos cinzentos (greybox) antes da arte final.
-- Definir caminho principal, área segura, área de inimigos e ponto de interesse.
-- Adicionar colisões, limites, iluminação e orientação visual.
-- Só substituir blocos por assets finais depois de a navegação funcionar.
+### M3 — Combate e progressão
+- Implementar alvo, ataque, dano, estados do inimigo, XP e nível.
+- Adicionar feedback visual e sonoro com recursos gratuitos/licenciados.
 
-**Gate:** é possível atravessar a região sem ficar preso, cair do cenário ou perder o objetivo.
+**Gate:** derrotar inimigo, receber XP e subir de nível funciona em teste repetível.
 
-### Fase 5 — NPC, missão e interface
-- Adicionar um NPC com interação.
-- Criar uma missão curta: aceitar, cumprir um objetivo simples, entregar e receber recompensa.
-- Organizar HUD: vida, recurso se existir, nível, XP, alvo e feedback de missão.
-- Melhorar menus sem esconder informações essenciais.
+### M4 — Mundo e cidade
+- Ampliar o mapa com região inicial, estrada, transição de bioma e cidade.
+- Adicionar NPCs, colisões, iluminação e navegação.
 
-**Gate:** missão completa do início ao fim; HUD atualiza os estados corretos.
+**Gate:** o jogador percorre o trajeto completo sem ficar preso ou sair dos limites.
 
-### Fase 6 — Conteúdo e polimento
-- Adicionar variação de inimigos, equipamentos e habilidades conforme necessidade.
-- Integrar outros personagens já disponíveis, um por vez.
-- Melhorar áudio, efeitos, cenário, iluminação e interface.
-- Medir desempenho e otimizar apenas gargalos identificados.
+### M5 — Polimento
+- Corrigir câmera, animações, interface, som e desempenho.
+- Medir FPS na máquina do proprietário.
 
-**Gate:** regressão completa do MVP sem erros; desempenho medido na máquina de desenvolvimento.
+**Gate:** regressão completa do caminho jogável aprovada pelo proprietário.
 
-### Fase 7 — Distribuição local
-- Preparar build para Windows usando ferramentas gratuitas disponíveis.
-- Testar em uma pasta limpa, fora do ambiente de desenvolvimento.
-- Documentar controles, requisitos e limitações conhecidas.
+### M6 — Build e documentação
+- Criar build Windows.
+- Testar em pasta limpa.
+- Registrar vídeos, capturas, licenças, custos e problemas conhecidos.
 
-**Gate:** build abre e permite completar o ciclo principal sem depender da pasta de desenvolvimento.
+**Gate:** build inicia fora do editor e completa a primeira fatia jogável.
 
-## 6. Regra de expansão
+## 7. Regras de produção
 
-Uma nova raça, classe, região ou sistema só entra na fila de implementação quando o ciclo atual estiver funcionando e testado. Se uma funcionalidade ameaça quebrar o MVP, ela volta para a fila e o último checkpoint estável é preservado.
+1. Uma tarefa por vez, com teste explícito.
+2. Não marcar como concluído sem executar o teste e observar o resultado.
+3. Manter screenshots e registros de progresso em marcos importantes.
+4. Fazer commits frequentes e manter histórico TXT.
+5. Não editar ou excluir o protótipo Ursina sem pedido explícito e backup.
+6. Não limpar ou modificar o disco C: para preparar o projeto Unity; direcionar os dados grandes do Lumina para D:.
+7. Se o download/instalação falhar, registrar a mensagem e diagnosticar antes de repetir.
+8. Manter objetivo de custo externo zero.
 
-## 7. Política de dependências
+## 8. Estado e bloqueios atuais
 
-- Dependência obrigatória deve ser gratuita, instalável localmente e ter licença compatível.
-- Preferir bibliotecas de código aberto e ferramentas offline.
-- Não inserir chaves, tokens ou segredos no código ou no Git.
-- Não integrar endpoints que possam gerar cobrança automática.
-- Não depender de geração de imagens/3D por créditos ou assinatura.
-- Se uma ferramenta gratuita mudar de condição, o jogo deve continuar compilável sem ela.
+- Unity Hub: proprietário confirmou que instalou, abriu e entrou na conta.
+- Unity Editor: ainda não confirmado instalado.
+- Falha de download: pendente de diagnóstico.
+- Espaço medido no momento do diagnóstico: C: ~0,32 GB livres; D: ~124,31 GB livres.
+- O proprietário não quer alterar o C: por causa de outro projeto.
+- Pastas já criadas no D:
+  - D:\Unity\Hub\Editor
+  - D:\Unity\Hub\Downloads
+  - D:\Unity\Projects
+- Ainda é necessário confirmar os caminhos de instalação/download/projeto dentro do Hub.
 
-## 8. Critério de conclusão de tarefa
+## 9. Critério de conclusão de tarefa
 
 Uma tarefa só pode ser marcada como concluída quando:
 - o código/asset está no local correto;
-- o jogo inicia;
+- o Editor/projeto abre;
 - o teste específico foi executado;
-- não há erro novo no terminal;
+- não há erro novo no Console;
 - a alteração não quebra o ciclo já funcional;
-- o resultado visual foi observado no jogo, não apenas presumido pelo código;
-- o DEVLOG e o Git foram atualizados quando a mudança for significativa.
+- o resultado visual foi observado na Game View;
+- DEVLOG, TODO e Git foram atualizados quando a mudança for significativa.
