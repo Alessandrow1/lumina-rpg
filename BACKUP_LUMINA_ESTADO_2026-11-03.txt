@@ -89,7 +89,7 @@ Este checkpoint atualizou no GitHub:
 - Docs/ESTRUTURA_TECNICA.md
 - Docs/PLANO_DE_PRODUCAO.md
 
-O presente arquivo também será adicionado à raiz do repositório como backup TXT consolidado. Depois da publicação, executar na cópia local:
+O presente arquivo também foi adicionado à raiz do repositório como backup TXT consolidado. Depois da publicação, executar na cópia local:
 
   cd /d D:\rpg-Lumina
   git pull --ff-only
