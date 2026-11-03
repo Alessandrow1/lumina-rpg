@@ -1,30 +1,49 @@
 # Lumina RPG
 
-Projeto de RPG em desenvolvimento. A estratégia atual é reconstruir em Unity a estrutura e o fluxo de uma fatia jogável de RPG clássico, usando World of Oldcraft como referência de produção e adaptando gradualmente o resultado à identidade própria do Lumina.
+RPG 3D de fantasia single-player em desenvolvimento.
 
 ## Direção atual
-- Motor planejado: Unity 6000.5.9f1 + Universal 3D (URP).
-- Local planejado: D:\Unity\Projects\Lumina-Unity.
+- Motor principal: Unity 6 + URP.
+- Editor instalado: 6000.3.28f1.
+- Projeto planejado: D:\Unity\Projects\Lumina-Unity.
 - Custo externo desejado: R$ 0.
-- Projeto Ursina/Panda3D em D:\rpg-Lumina preservado como protótipo de referência; não foi apagado ou substituído.
-- A build recebida de World of Oldcraft é compilada, e o Build Kit não contém o código-fonte C# completo. O Lumina será reconstruído com código próprio e assets com licenças verificadas.
+- World of Oldcraft é a referência principal de estrutura, fluxo e processo. O Lumina será reconstruído com implementação e identidade próprias.
+- O projeto Ursina/Panda3D em D:\rpg-Lumina permanece preservado como protótipo de referência.
 
-## Protótipo Ursina preservado
-O repositório contém o protótipo Python + Ursina/Panda3D, scripts de teste e seis modelos GLTF Quaternius em assets/models/characters. Consulte HISTORICO_DO_PROJETO_LUMINA_RPG.txt para resultados dos testes e histórico.
+## Estado do ambiente
+- Unity Hub instalado via Microsoft Store, versão 3.22.5.65535, e conta acessada.
+- Unity Editor 6000.3.28f1 instalado em D:\Unity\Hub\Editor\6000.3.28f1\Editor.
+- Windows Build Support confirmado.
+- Ativação da licença Unity falhou; projeto URP ainda não criado.
+- Pastas de ferramentas e projeto criadas no D:. Consulte Docs/TODO.md e Docs/DEVLOG.md.
 
-## Estado da instalação Unity
-O Unity Hub foi instalado, aberto e autenticado. A instalação do Editor ainda está pendente. As pastas de destino foram criadas no disco D:, mas as localizações configuradas no Hub e o download do Editor ainda precisam ser confirmados.
+## Pastas locais relevantes
+- D:\Unity\Downloads — instaladores.
+- D:\Unity\Temp — temporários usados durante instalação.
+- D:\Unity\Hub\Editor — Unity Editors.
+- D:\Unity\Projects — projetos novos.
+- D:\rpg-Lumina — protótipo Ursina preservado.
+
+## Protótipo Ursina
+Seis GLTFs Quaternius e LICENSE-CC0.txt estão em assets/models/characters. Os três scripts de teste e o estado do personagem com espada estão documentados em HISTORICO_DO_PROJETO_LUMINA_RPG.txt.
 
 ## Documentação
 - Docs/PLANO_DE_PRODUCAO.md
 - Docs/TODO.md
 - Docs/DEVLOG.md
+- Docs/ESTRUTURA_TECNICA.md
 - Docs/STYLE_BIBLE.md
 - Docs/MAPA_DO_MUNDO.md
 - Docs/CRITERIOS_DE_ACEITACAO.md
-- Docs/ESTRUTURA_TECNICA.md
 - Docs/LICENCAS_E_ASSETS.md
 - Docs/POLITICA_GRATUITA.md
+- HISTORICO_DO_PROJETO_LUMINA_RPG.txt
+- BACKUP_LUMINA_ESTADO_2026-11-03.txt
+- BACKUP_LUMINA_CHECKPOINT_2026-11-03_15h.txt
 
-## Preservação de arquivos
-Não apagar o protótipo Ursina até que a nova fatia Unity esteja construída, testada e respaldada. Não reutilizar código ou conteúdo protegido de terceiros sem autorização; conferir licenças de todos os assets.
+## Regras
+- Não apagar o protótipo Ursina até a nova versão estar construída, testada e respaldada.
+- Não limpar nem alterar o disco C: por causa do outro projeto do proprietário.
+- Usar somente assets com licença verificada.
+- Não reutilizar conteúdo protegido de terceiros sem autorização.
+- Manter custo externo em R$ 0.
