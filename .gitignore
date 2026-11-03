@@ -11,16 +11,33 @@ dist/
 .ruff_cache/
 .idea/
 .vscode/
+
+# Downloads locais
 drive-download-20261103T034945Z-1-001/
 drive-download-20261103T034945Z-1-001.zip
+
+# Arquivos auxiliares
 voice_preview_voz aurora.mp3
 Preview.png
 teste_personagem.py
 *.blend
 *.fbx
 *.obj
-# Pacotes e scripts auxiliares de backup (nao fazem parte do jogo)
-/Lumina_RPG_Backup_Kit*.zip
-/backup_lumina_git*.bat
+
+# Backups locais
 /LUMINA_BACKUP_GITHUB.bat
+/backup_lumina_git*.bat
+/Lumina_RPG_Backup_Kit*.zip
+/README_INSTALACAO.txt
+/k.zip
+
+# Kit de producao local
+/INSTALAR_KIT_LUMINA.bat
+/Lumina_RPG_Kit_Producao_Gratuito.zip
+
+# Referencias externas
+/World of Oldcraft - Game-20261103T150329Z-1-001/
+/World of Oldcraft - Game-20261103T150329Z-1-001.zip
+
+# Pacotes duplicados
 /assets/glTF/
