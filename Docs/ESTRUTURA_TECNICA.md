@@ -1,96 +1,131 @@
-# Lumina RPG — Estrutura técnica
+# Lumina RPG — Estrutura técnica e diretórios
 
-## Direção escolhida em 03/11/2026
+## 1. Separação dos projetos
 
-O desenvolvimento principal será reconstruído em um projeto separado usando Unity 6000.5.9f1 e Universal Render Pipeline (URP), conforme a metodologia do Build Kit do World of Oldcraft.
+O projeto antigo Ursina e o novo projeto Unity são separados deliberadamente.
 
-O projeto Python + Ursina + Panda3D existente em D:\rpg-Lumina será preservado intacto como protótipo técnico e referência. Não mover nem sobrescrever seus arquivos durante a criação do projeto Unity.
+### Protótipo Ursina preservado
+Caminho: D:\rpg-Lumina
 
-Caminho planejado do projeto novo: D:\Unity\Projects\Lumina-Unity.
+Estrutura relevante existente:
+- main.py — protótipo antigo.
+- teste_pbr_panda.py — experimento de renderização nativa Panda3D/PBR.
+- teste_ursina_pbr.py — experimento Ursina + simplepbr + Actor.
+- teste_espada.py — personagem com espada anexada a Fist.R; melhor demonstração visual atual.
+- main_lumina_integrado.py — arquivo local não rastreado, não testado/aprovado; não substituir main.py nem versionar sem revisão.
+- assets\models\characters\ — seis modelos GLTF e LICENSE-CC0.txt.
+- Docs\ — planejamento, TODO, DEVLOG, mapa, style bible, critérios, licenças e política gratuita.
+- HISTORICO_DO_PROJETO_LUMINA_RPG.txt — histórico cumulativo.
+- BACKUP_LUMINA_ESTADO_2026-11-03.txt e BACKUP_LUMINA_CHECKPOINT_2026-11-03_15h.txt — snapshots de estado.
 
-## Estrutura planejada do projeto Unity
+### Novo ambiente Unity
+Raiz de ferramentas: D:\Unity
+
+Estado de diretórios:
+D:\Unity\
+├── Downloads\
+│   ├── UnitySetup64-6000.3.28f1.exe
+│   └── vs_Community.exe (não verificado/não instalado)
+├── Hub\
+│   ├── Downloads\ (criada; não é o caminho de download informado pelo proprietário)
+│   └── Editor\
+│       └── 6000.3.28f1\
+│           └── Editor\
+│               ├── Unity.exe
+│               └── Data\
+│                   └── PlaybackEngines\
+│                       └── WindowsStandaloneSupport\
+├── Projects\
+│   └── Lumina-Unity\ (planejado, ainda não criado)
+└── Temp\
+
+Configurações relatadas:
+- Installs Location: D:\Unity\Hub\Editor.
+- Downloads Location: D:\Unity\Downloads.
+- Projetos novos: D:\Unity\Projects.
+A confirmação visual das configurações do Hub ainda está pendente.
+
+## 2. Unity Editor e bloqueios
+- Hub via Microsoft Store: UnityTechnologies.UnityHub_3.22.5.65535_x64__2vrhnee42bhxm.
+- Editor 6000.3.28f1 instalado e Unity.exe confirmado.
+- Windows Build Support instalado.
+- Licença Unity ainda falhou na ativação; precisa resolver antes de considerar ambiente pronto.
+- O Build Kit usa 6000.5.9f1; validar compatibilidade antes de instalar outra versão.
+- C: estava com ~0,32 GB livres em medição anterior. Não limpar ou alterar por causa de outro projeto.
+- D: tinha ~120,38 GB livres após a instalação.
+- TEMP/TMP direcionados para D:\Unity\Temp somente na sessão do CMD usada durante a instalação.
+
+## 3. Estrutura planejada dentro de Lumina-Unity
 
 \`\`\`text
-Lumina-Unity/
-├── Assets/
-│   ├── _Project/
-│   │   ├── Scripts/
-│   │   │   ├── Core/
-│   │   │   ├── Characters/
-│   │   │   ├── Combat/
-│   │   │   ├── AI/
-│   │   │   ├── Progression/
-│   │   │   ├── Quests/
-│   │   │   ├── Save/
-│   │   │   └── UI/
-│   │   ├── Scenes/
-│   │   ├── Prefabs/
-│   │   ├── Materials/
-│   │   ├── Shaders/
-│   │   ├── UI/
-│   │   ├── Audio/
-│   │   └── VFX/
-│   ├── _Generated/
-│   │   ├── characters/
-│   │   ├── creatures/
-│   │   ├── world/
-│   │   ├── ui/
-│   │   ├── vfx/
-│   │   └── audio/
-│   ├── _External/
-│   └── _Source/
-│       └── Mixamo/
-├── Docs/
-├── Builds/
-└── ProjectSettings/
+D:\Unity\Projects\Lumina-Unity\
+├── Assets\
+│   ├── _Project\
+│   │   ├── Scripts\
+│   │   │   ├── Core\
+│   │   │   ├── Characters\
+│   │   │   ├── Player\
+│   │   │   ├── Camera\
+│   │   │   ├── Combat\
+│   │   │   ├── Skills\
+│   │   │   ├── AI\
+│   │   │   ├── Progression\
+│   │   │   ├── Quests\
+│   │   │   ├── Save\
+│   │   │   ├── UI\
+│   │   │   └── World\
+│   │   ├── Scenes\
+│   │   ├── Prefabs\
+│   │   ├── Materials\
+│   │   ├── Shaders\
+│   │   ├── UI\
+│   │   ├── Audio\
+│   │   └── VFX\
+│   ├── _Generated\
+│   │   ├── characters\
+│   │   ├── creatures\
+│   │   ├── world\
+│   │   ├── ui\
+│   │   ├── vfx\
+│   │   └── audio\
+│   ├── _External\
+│   └── _Source\
+│       └── Mixamo\
+├── Packages\
+├── ProjectSettings\
+├── UserSettings\        (local; não versionar conteúdo temporário)
+├── Docs\
+├── Builds\              (builds locais; aplicar política Git)
+└── .gitignore
 \`\`\`
 
-A estrutura será criada gradualmente. Não criar dezenas de pastas vazias antes de haver sistemas que as utilizem.
+Esta estrutura é proposta, não criada. Criar subpastas somente quando entrarem em uso.
 
-## Cenas e fluxo
+## 4. Cenas planejadas
+- Boot — inicialização e configurações.
+- FrontEnd — menu, seleção e criação.
+- Loading — transição para a região.
+- World — primeira região jogável.
 
-Fluxo planejado:
-1. Boot — inicialização e carregamento de configurações.
-2. FrontEnd — menu inicial, seleção e criação de personagem.
-3. Loading — transição para a região.
-4. World — primeira região jogável.
-
-## Sistemas principais
-
-- Character: visual, equipamento, animações e dados do personagem.
-- Player: input, movimento, câmera e interação.
-- Combat: alvo, ataque automático, habilidades, dano e morte.
-- AI: estados básicos de inimigos e NPCs.
+## 5. Sistemas planejados
+- Core: configuração, estado do jogo e gerenciamento de cenas.
+- Character: dados, aparência, equipamento, rig e animações.
+- Player: Input System, movimento e interação.
+- Camera: câmera terceira pessoa, órbita e colisão.
+- Combat: alvo, ataque, dano, morte e feedback.
+- Skills: habilidades e cooldowns.
+- AI: estados de inimigos e NPCs.
 - Progression: experiência, nível e atributos.
 - Quests: aceitar, acompanhar e entregar missão.
-- Save: persistência local em JSON ou formato nativo simples, com validação.
+- Save: persistência local e validação.
 - UI: menus, HUD, diálogos, barras e feedback.
-- World: regiões, colisões, navegação, iluminação e ambientação.
-- Audio/VFX: efeitos e sons com assets próprios ou licenciados.
+- World: regiões, terreno, colisões, navegação e iluminação.
+- Audio/VFX: sons e efeitos gratuitos/licenciados.
 
-## Regras técnicas
-
-- Usar apenas ferramentas e recursos compatíveis com a meta de custo externo zero.
-- Preferir recursos offline e assets CC0 ou com licença gratuita claramente compatível.
-- Registrar fonte e licença de cada asset externo.
-- Não depender de API paga, chave comercial, assinatura ou crédito de geração.
-- Nunca incorporar código, assets extraídos ou conteúdo protegido de jogo comercial sem autorização.
-- Manter cenas pequenas e testar cada integração antes de ampliar o escopo.
-- Separar dados configuráveis (vida, dano, velocidade, cooldown, XP) da lógica sempre que fizer sentido.
-- Não versionar caches, Library, Temp, Logs, Builds locais temporários ou credenciais.
-- Inicializar Git para o novo projeto sem sobrescrever o repositório/protótipo Ursina.
-
-## Projeto Ursina preservado
-
-O projeto antigo contém os seis modelos Quaternius GLTF, testes Panda3D/PBR, integração Ursina e o protótipo de espada anexada a Fist.R. Os resultados conhecidos estão em HISTORICO_DO_PROJETO_LUMINA_RPG.txt e Docs/DEVLOG.md.
-
-Esses arquivos servem como referência e cópia de segurança. Não considerar seus testes como sistemas já integrados ao novo projeto Unity.
-
-## Estado atual
-
-- [x] Protótipo Ursina e testes mantidos no repositório existente.
-- [x] Direção de reconstrução em Unity registrada.
-- [ ] Unity Hub com os caminhos no disco D: confirmados.
-- [ ] Unity Editor 6000.5.9f1 instalado.
-- [ ] Projeto URP criado em D:\Unity\Projects\Lumina-Unity.
-- [ ] Estrutura inicial e fluxo greybox implementados.
+## 6. Regras Git para o novo Unity
+- Criar um repositório Git separado para D:\Unity\Projects\Lumina-Unity quando o projeto existir.
+- Usar .gitignore oficial/adaptado para Unity; não versionar Library/, Temp/, Obj/, Logs/, UserSettings/ locais, builds temporárias nem caches.
+- Versionar Assets, Packages/manifest.json, Packages/packages-lock.json, ProjectSettings e documentação.
+- Nunca armazenar chaves/credenciais.
+- Preservar D:\rpg-Lumina e seu histórico existente. Não transformar a raiz atual em projeto Unity.
+- Definir posteriormente se o novo projeto usará um novo repositório remoto; não misturar os dois históricos por acidente.
