@@ -23,3 +23,21 @@ Registro inicial montado a partir do histórico conhecido do projeto. Horários 
 - **Problemas conhecidos:**
 - **Commit:**
 - **Estado:** implementado / testado localmente / aprovado pelo proprietário.
+
+
+## 2026-11-03 — Testes de personagem e decisão de reconstrução em Unity
+
+- **Objetivo:** registrar os testes dos três protótipos e definir como aproveitar o material World of Oldcraft.
+- **Resultados relatados pelo proprietário:**
+  - teste_pbr_panda.py: o personagem parece cair/desmaiar; não tem espada. Não aprovado como base de gameplay.
+  - teste_ursina_pbr.py: reproduz andar, correr e atacar; sem espada.
+  - teste_espada.py: reproduz andar, correr e atacar com espada. É a melhor referência visual atual para personagem/equipamento.
+- **Limite da validação:** os testes de animação não comprovam um controlador completo com deslocamento de gameplay, colisões, dano ou câmera final. Não marcar esses sistemas como concluídos.
+- **Decisão:** reconstruir a estrutura, telas e fluxo principal do Oldcraft em um projeto Unity separado, usando relatório, Build Kit e vídeos como referências. Adaptar gradualmente para a identidade própria do Lumina.
+- **Preservação:** manter o projeto Ursina em D:\rpg-Lumina intacto como protótipo e referência. Não substituir main.py nem apagar os testes existentes.
+- **Oldcraft:** build recebida é compilada; Build Kit não contém o código-fonte C# completo. Reimplementar sistemas com código próprio e somente usar assets com licença/autorização adequada.
+- **Unity Hub:** proprietário confirmou instalação, abertura e login. Unity Editor ainda não confirmado instalado; download falhou. C: tinha aproximadamente 0,32 GB livres e D: aproximadamente 124,31 GB no momento da medição. Proprietário pediu para não alterar/limpar o C:.
+- **Pastas criadas no D:** D:\Unity\Hub\Editor, D:\Unity\Hub\Downloads e D:\Unity\Projects.
+- **Pendente:** confirmar as localizações do Hub, resolver download, instalar Unity 6000.5.9f1 com Windows Build Support e criar projeto Universal 3D (URP) em D:\Unity\Projects\Lumina-Unity.
+- **Custo:** manter objetivo de R$ 0 em assinaturas, APIs e assets pagos.
+- **Estado:** testes executados localmente conforme relato do proprietário; decisão de migração definida; instalação do Editor e projeto Unity ainda pendentes.
