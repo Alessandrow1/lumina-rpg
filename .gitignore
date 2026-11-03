@@ -19,3 +19,8 @@ teste_personagem.py
 *.blend
 *.fbx
 *.obj
+# Pacotes e scripts auxiliares de backup (nao fazem parte do jogo)
+/Lumina_RPG_Backup_Kit*.zip
+/backup_lumina_git*.bat
+/LUMINA_BACKUP_GITHUB.bat
+/assets/glTF/
