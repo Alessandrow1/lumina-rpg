@@ -281,3 +281,99 @@ RESTRIÇÃO DE CUSTO:
 - Verificar as condições/licenças das ferramentas e assets gratuitos antes de usá-los ou distribuí-los.
 
 Fim do checkpoint de 03/11/2026.
+
+
+13. CHECKPOINT OPERACIONAL — 03/11/2026 (UNITY EDITOR INSTALADO; LICENÇA PENDENTE)
+--------------------------------------------------------------------------------
+O que foi confirmado nesta sessão:
+- O proprietário confirmou a execução dos três testes Ursina:
+  1) teste_pbr_panda.py: personagem parece cair/desmaiar; sem espada.
+  2) teste_ursina_pbr.py: animações de andar, correr e atacar; sem espada.
+  3) teste_espada.py: andar, correr e atacar com espada. Melhor referência visual do protótipo.
+- O arquivo main.py permanece o protótipo antigo e não foi integrado.
+- O arquivo main_lumina_integrado.py existe localmente como arquivo não rastreado (??); foi fornecido como experimento, mas não foi relatado como executado/aprovado. Preservar e não publicar até revisar/testar.
+- O repositório local recebeu o checkpoint documental anterior com git pull --ff-only. Resultado informado: main...origin/main e apenas ?? main_lumina_integrado.py.
+
+UNITY HUB:
+- Instalado pela Microsoft Store.
+- Package: UnityTechnologies.UnityHub_3.22.5.65535_x64__2vrhnee42bhxm.
+- Caminho do pacote observado: C:\Program Files\WindowsApps\UnityTechnologies.UnityHub_3.22.5.65535_x64__2vrhnee42bhxm.
+- O proprietário confirmou que abriu o Hub e entrou na conta.
+- Pastas de dados convencionais existem, mas não foi encontrado o diretório padrão de logs %APPDATA%\UnityHub\logs.
+- Pastas observadas:
+  %APPDATA%\UnityHub
+  %LOCALAPPDATA%\UnityHub
+  %LOCALAPPDATA%\Packages\UnityTechnologies.UnityHub_2vrhnee42bhxm
+- A localização dos logs do Licensing Client ainda precisa ser descoberta.
+
+UNITY EDITOR:
+- Instalador usado: D:\Unity\Downloads\UnitySetup64-6000.3.28f1.exe.
+- Tamanho observado: aproximadamente 3,92 GB.
+- AuthenticodeSignature retornou Status=Valid, assinatura verificada.
+- Signatário: Unity Technologies SF.
+- Metadados: ProductName Unity 6000.3.28f1; FileVersion 6000.3.28.0; CompanyName Unity Technologies ApS.
+- A pasta inicial da versão estava vazia.
+- As tentativas silenciosas não instalaram o Editor; uma tentativa retornou código de saída 2 e outra código 0 sem criar Unity.exe.
+- O processo foi resolvido configurando TEMP e TMP apenas na sessão atual do CMD para D:\Unity\Temp, confirmando [System.IO.Path]::GetTempPath() = D:\Unity\Temp\, e então abrindo o instalador interativamente sem parâmetros.
+- O proprietário confirmou que agora existe:
+  D:\Unity\Hub\Editor\6000.3.28f1\Editor\Unity.exe
+- O proprietário confirmou que também existe:
+  D:\Unity\Hub\Editor\6000.3.28f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport
+- Portanto, Editor 6000.3.28f1 e Windows Build Support estão instalados no D:.
+- A versão é 6000.3.28f1, diferente da 6000.5.9f1 que o Build Kit do Oldcraft recomenda. A versão 6000.3.28f1 é a versão atualmente instalada e deve ser usada para a próxima validação, salvo incompatibilidade comprovada que justifique instalar outra.
+
+LICENÇA:
+- Ao tentar ativar, o proprietário recebeu:
+  "A ativação da sua licença falhou. Tente novamente ou entre em contato com o Suporte da Unity para obter ajuda."
+- A licença ainda não está ativada. Não considerar o Editor pronto para uso até validar abertura do Editor e licença Unity Personal.
+- A causa ainda não foi comprovada. Não assumir que a falha decorre do espaço em disco, da conta ou da rede sem obter log/erro detalhado.
+- Próxima investigação: encontrar o log do Unity Licensing Client; verificar relógio/data do Windows, login no Hub, conectividade/autorização de rede e estado da licença. Não apagar dados de licenciamento nem reinstalar o Hub como primeira medida.
+
+DIRETÓRIOS E ARQUIVOS NO DISCO D: (ESTADO OBSERVADO/RELATADO)
+D:\Unity\
+├── Downloads\
+│   ├── UnitySetup64-6000.3.28f1.exe  (3,92 GB; assinatura Unity válida)
+│   └── vs_Community.exe             (baixado; não instalado nem verificado)
+├── Hub\
+│   ├── Downloads\                   (pasta criada; Hub foi informado para usar D:\Unity\Downloads)
+│   └── Editor\
+│       └── 6000.3.28f1\
+│           └── Editor\
+│               ├── Unity.exe        (confirmado)
+│               └── Data\
+│                   └── PlaybackEngines\
+│                       └── WindowsStandaloneSupport (confirmado)
+├── Projects\                        (pasta criada; ainda sem Lumina-Unity)
+└── Temp\                            (criada e usada durante a instalação)
+
+- O proprietário informou os caminhos Installs Location = D:\Unity\Hub\Editor e Downloads Location = D:\Unity\Downloads. A confirmação visual final na tela de Settings ainda não foi registrada nesta conversa.
+- Projects Location D:\Unity\Projects existe como diretório, mas a configuração correspondente no Hub ainda não foi confirmada.
+- O TEMP/TMP foi alterado apenas na sessão CMD usada para a instalação; não foi feita mudança permanente nas variáveis do Windows.
+
+ARMAZENAMENTO:
+- Durante o diagnóstico havia aproximadamente 0,32 GB livres no C:.
+- Após as tentativas e instalação, foi medida uma disponibilidade aproximada de 120,38 GB no D:.
+- O proprietário pediu expressamente para não limpar, mover ou alterar o outro projeto/arquivos do C:.
+- Não executar limpeza do C:, mover perfis, criar junctions/symlinks ou alterar variáveis permanentes sem pedido e explicação explícita.
+- O Windows e aplicativos ainda podem manter pequenos dados de perfil/licença no C:. O objetivo é manter Editor, downloads, temporários de instalação desta sessão e projeto do Lumina no D:.
+
+VISUAL STUDIO:
+- D:\Unity\Downloads\vs_Community.exe existe.
+- Não há confirmação de tamanho, assinatura, origem oficial ou instalação.
+- Não executar até verificar assinatura digital e necessidade. O Editor e Windows Build Support já foram instalados sem esse instalador.
+
+PRÓXIMAS ETAPAS OPERACIONAIS:
+1. Resolver a ativação da licença Unity Personal e registrar a mensagem/log real.
+2. Registrar o Editor 6000.3.28f1 no Unity Hub por Locate, se ainda não aparecer em Installs.
+3. Confirmar nas configurações do Hub os destinos:
+   - Installs: D:\Unity\Hub\Editor
+   - Downloads: D:\Unity\Downloads
+   - Projetos: D:\Unity\Projects (ou criar projeto explicitamente nesse caminho, se o Hub não tiver campo Projects Location).
+4. Abrir o Unity Editor e criar projeto Universal 3D (URP) em:
+   D:\Unity\Projects\Lumina-Unity
+5. Validar se o projeto abre e compila com o Editor instalado.
+6. Criar .gitignore apropriado para Unity no projeto novo; iniciar Git sem misturar o repositório Ursina existente.
+7. Recriar com código próprio a estrutura e o fluxo de jogo inspirado no Oldcraft; o jogo compilado não é fonte editável e o Build Kit não inclui o código C# completo.
+8. Manter o custo externo em R$ 0 e registrar a licença de cada asset.
+
+Fim do checkpoint operacional.
