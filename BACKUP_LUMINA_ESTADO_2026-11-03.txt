@@ -1,0 +1,118 @@
+LUMINA RPG — BACKUP CONSOLIDADO DE ESTADO
+=========================================
+Data: 03/11/2026
+Pasta do protótipo existente: D:\rpg-Lumina
+Repositório: https://github.com/Alessandrow1/lumina-rpg
+Branch: main
+Objetivo: backup do estado do projeto, decisões e próximas etapas.
+
+1. DECISÃO ATUAL DO PROJETO
+---------------------------
+O proprietário decidiu reconstruir a estrutura e o fluxo principal do World of Oldcraft em um projeto Unity separado, usando o material do Oldcraft como referência próxima e adaptando gradualmente o resultado à identidade própria do Lumina RPG.
+
+O projeto Python + Ursina + Panda3D em D:\rpg-Lumina deve permanecer intacto como protótipo e referência. Não apagar, mover ou sobrescrever seus arquivos durante a preparação do Unity.
+
+O jogo do Oldcraft baixado é uma build compilada para Windows, não um projeto Unity editável. O Build Kit contém documentação, especificações, regras de produção e scripts auxiliares, mas não o código-fonte C# completo. A reconstrução do Lumina deve usar código próprio e assets com licença/autorização adequada.
+
+2. ESTADO DO UNITY
+------------------
+- O proprietário confirmou que baixou e instalou o Unity Hub, abriu o aplicativo e entrou na conta.
+- Ainda não há confirmação de que o Unity Editor esteja instalado.
+- O download do Editor falhou; a causa ainda não foi confirmada.
+- Espaço livre medido no diagnóstico: C: aproximadamente 0,32 GB; D: aproximadamente 124,31 GB.
+- O proprietário pediu expressamente para não limpar, mover ou modificar arquivos do C: por causa de outro projeto.
+- Pastas criadas e verificadas no D:
+  D:\Unity\Hub\Editor
+  D:\Unity\Hub\Downloads
+  D:\Unity\Projects
+- Falta confirmar dentro do Unity Hub:
+  Installs Location = D:\Unity\Hub\Editor
+  Downloads Location = D:\Unity\Hub\Downloads
+  Projects Location = D:\Unity\Projects
+- Versão planejada conforme o Build Kit: Unity 6000.5.9f1.
+- Template planejado: Universal 3D (URP).
+- Módulo planejado: Windows Build Support.
+- Projeto planejado: D:\Unity\Projects\Lumina-Unity.
+- Não alterar o C: para liberar espaço. Configurar os caminhos de downloads, Editor e projetos do Lumina para o D:. O Windows/Hub ainda pode manter pequenos arquivos de configuração/cache no perfil do usuário.
+
+3. ESTADO DO PROTÓTIPO URSINA
+-----------------------------
+Resultados informados pelo proprietário ao executar os três testes:
+
+teste_pbr_panda.py:
+- Personagem aparece como se caísse/desmaiasse.
+- Sem espada.
+- Resultado não escolhido como base de gameplay.
+
+teste_ursina_pbr.py:
+- Personagem reproduz animações de andar, correr e atacar.
+- Sem espada.
+
+teste_espada.py:
+- Personagem reproduz andar, correr e atacar com espada.
+- Melhor referência visual atual do personagem e do encaixe inicial do equipamento.
+- Espada anexada ao osso Fist.R; ainda pode exigir refinamento.
+
+Esses testes não comprovam um controlador completo com deslocamento real pelo cenário, colisões, inimigos, dano, XP ou câmera final.
+
+main.py:
+- Continua sendo o protótipo Ursina original.
+- Ainda não foi integrado ao carregamento GLTF/PBR e ao sistema de espada.
+- Não foi substituído.
+
+4. PERSONAGENS E ASSETS PRESERVADOS
+-----------------------------------
+Pasta: assets/models/characters/
+
+- Knight_Male.gltf
+- Wizard.gltf
+- Elf.gltf
+- Viking_Male.gltf
+- Ninja_Male.gltf
+- Soldier_Male.gltf
+- LICENSE-CC0.txt
+
+O pacote dos personagens é Quaternius e o arquivo de licença incluído identifica CC0 1.0 Universal. Manter a licença junto aos arquivos.
+
+5. ESTADO DO GIT E BACKUP
+-------------------------
+Antes deste checkpoint:
+- O proprietário confirmou git status limpo e main sincronizada com origin/main.
+- Commit de base confirmado: 6bb835f40dbbc7a77dee74cfaf6f1f25047880f8.
+- Mensagem: docs: establish Lumina RPG production plan (M0).
+
+Este checkpoint atualizou no GitHub:
+- HISTORICO_DO_PROJETO_LUMINA_RPG.txt
+- Docs/DEVLOG.md
+- Docs/TODO.md
+- README.md
+- Docs/ESTRUTURA_TECNICA.md
+- Docs/PLANO_DE_PRODUCAO.md
+
+O presente arquivo também será adicionado à raiz do repositório como backup TXT consolidado. Depois da publicação, executar na cópia local:
+
+  cd /d D:\rpg-Lumina
+  git pull --ff-only
+  git status --short --branch
+
+Esperado: main sincronizada com origin/main, sem alterações pendentes. Se o pull falhar, parar e enviar a mensagem completa; não usar push --force.
+
+6. REGRAS DE CUSTO E LICENÇA
+----------------------------
+- Objetivo declarado: custo externo R$ 0.
+- Não contratar assinaturas, APIs pagas, créditos de geração ou assets pagos.
+- Verificar licença de cada ferramenta e asset antes de usar ou distribuir.
+- Usar Oldcraft como referência de organização e experiência, não como fonte para copiar código ou conteúdo protegido sem autorização.
+- Registrar proveniência e licença dos novos assets.
+
+7. PRÓXIMAS ETAPAS
+------------------
+1. Abrir Unity Hub e confirmar os três caminhos no disco D:.
+2. Diagnosticar a falha de download sem mexer no C:.
+3. Instalar Unity 6000.5.9f1 e Windows Build Support no D:.
+4. Criar o projeto URP em D:\Unity\Projects\Lumina-Unity.
+5. Configurar Git para o novo projeto sem misturar nem sobrescrever o protótipo Ursina.
+6. Reconstruir primeiro uma fatia jogável inspirada no Oldcraft: inicialização, personagem, câmera, região greybox, inimigo, combate, XP e HUD.
+7. Só depois ampliar telas, personagens, regiões, missões e polimento.
+
+Fim do backup consolidado.
