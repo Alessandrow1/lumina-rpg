@@ -1,140 +1,143 @@
 # Lumina RPG — Plano de produção
 
-**Versão:** 2.0  
-**Data de atualização:** 03/11/2026  
-**Estado:** decisão de reconstrução em Unity definida; instalação do Editor ainda pendente.
+**Versão:** 2.1  
+**Data:** 03/11/2026  
+**Estado:** Unity Editor 6000.3.28f1 e Windows Build Support instalados no D:; ativação da licença pendente; projeto URP ainda não criado.
 
 ## 1. Objetivo
 
-Construir Lumina RPG como um RPG 3D de fantasia single-player. A estrutura de telas, o fluxo de entrada no mundo, a primeira região, o combate e a produção em etapas serão reconstruídos tomando World of Oldcraft como referência próxima. O resultado será gradualmente adaptado à identidade própria do Lumina.
+Construir Lumina RPG como RPG 3D de fantasia single-player. A estrutura de telas, o fluxo de entrada no mundo, a primeira região, o combate e a produção em etapas serão reconstruídos tomando World of Oldcraft como referência próxima. O resultado será gradualmente adaptado à identidade própria do Lumina.
 
-A referência serve para orientar escopo, organização e qualidade. O Lumina terá implementação própria, nomes, história, personagens, mundo e identidade visual próprios.
+A referência orienta escopo, estrutura de produção e qualidade. Lumina terá implementação própria, nomes, história, personagens, mundo, interface e identidade próprios.
 
-## 2. Decisões de tecnologia e preservação
+## 2. Tecnologia e preservação
 
-- **Motor principal escolhido:** Unity 6000.5.9f1 + Universal 3D (URP), conforme o Build Kit analisado.
-- **Projeto Unity planejado:** D:\Unity\Projects\Lumina-Unity.
-- **Protótipo anterior:** Python + Ursina + Panda3D em D:\rpg-Lumina. Deve permanecer intacto como referência e backup.
-- **Custo externo:** objetivo de R$ 0; não depender de API paga, assinatura, créditos de geração nem assets pagos.
-- **Ferramentas auxiliares gratuitas:** Blender, Krita/GIMP, Audacity, Git e FFmpeg, conforme necessidade e respectivas licenças.
-- **Assets:** preferir modelos, texturas, sons e músicas CC0 ou com licença gratuita compatível; registrar fonte, autor e licença.
-- **Oldcraft:** a build recebida é compilada para Windows; o Build Kit contém especificações, regras e scripts auxiliares, não o projeto Unity completo nem o código C# do jogo. Não tratar o pacote como código-fonte recuperável.
+- **Motor principal:** Unity 6 + Universal Render Pipeline (URP).
+- **Editor já instalado:** 6000.3.28f1 em D:\Unity\Hub\Editor\6000.3.28f1\Editor.
+- **Versão do Build Kit:** 6000.5.9f1. A diferença será avaliada por compatibilidade real; não baixar outra versão até haver necessidade.
+- **Projeto novo planejado:** D:\Unity\Projects\Lumina-Unity.
+- **Projeto antigo:** Python + Ursina + Panda3D em D:\rpg-Lumina. Preservar intacto como protótipo e referência; não apagar ou sobrescrever.
+- **Custo externo:** R$ 0. Não depender de API paga, assinatura, créditos de geração ou assets pagos.
+- **Ferramentas auxiliares possíveis:** Blender, Krita/GIMP, Audacity, Git e FFmpeg, conforme necessidade, licença e compatibilidade.
+- **Assets:** preferir CC0 ou licença gratuita claramente compatível; registrar fonte, autor, licença e arquivos usados.
+- **World of Oldcraft:** build baixada é compilada para Windows; Build Kit contém especificações, regras, conhecimento e scripts auxiliares, não o projeto Unity completo nem o código C# do jogo.
 
-## 3. Originalidade e limites de reutilização
+## 3. Estado operacional confirmado em 03/11/2026
 
-Usar o relatório, as filmagens, os conceitos e o Build Kit como referência de processo, organização, escopo e apresentação. Não extrair nem reutilizar código, modelos, texturas, interface, marcas, mapas ou outros materiais protegidos de um jogo comercial sem licença/autorização.
+### Unity Hub
+- Instalado via Microsoft Store.
+- Versão do pacote: 3.22.5.65535.
+- Proprietário confirmou que abriu o aplicativo e entrou na conta.
+- Caminhos informados pelo proprietário: Installs em D:\Unity\Hub\Editor; Downloads em D:\Unity\Downloads.
+- Confirmação visual final desses campos ainda pendente.
+- O padrão %APPDATA%\UnityHub\logs não foi encontrado.
 
-É permitido reconstruir, com código próprio e recursos autorizados, sistemas comuns de RPG: seleção de personagem, câmera em terceira pessoa, movimentação, combate, inimigos, XP, missões, HUD, cidades e regiões exploráveis.
+### Unity Editor
+- Instalador D:\Unity\Downloads\UnitySetup64-6000.3.28f1.exe.
+- Tamanho aproximado: 3,92 GB.
+- Assinatura Authenticode válida; signatário Unity Technologies SF.
+- Editor instalado e Unity.exe confirmado em D:\Unity\Hub\Editor\6000.3.28f1\Editor\Unity.exe.
+- Windows Build Support confirmado em Editor\Data\PlaybackEngines\WindowsStandaloneSupport.
+- Tentativas silenciosas não instalaram corretamente. A instalação interativa funcionou após definir TEMP/TMP para D:\Unity\Temp na sessão CMD e iniciar o instalador sem parâmetros.
+- **Bloqueio atual:** ativação da licença falhou com mensagem genérica. A causa ainda não foi identificada.
 
-## 4. Linha de base preservada do protótipo Ursina
-
-O repositório atual contém:
-- Python + Ursina + Panda3D.
-- Seis modelos Quaternius GLTF em assets/models/characters, com LICENSE-CC0.txt.
-- teste_pbr_panda.py: o proprietário relatou uma animação que parece queda/desmaio, sem espada.
-- teste_ursina_pbr.py: o proprietário relatou animações de andar, correr e atacar, sem espada.
-- teste_espada.py: o proprietário relatou andar/correr/atacar com espada; é a melhor referência visual atual para arma e personagem.
-- main.py ainda é o protótipo antigo, não integrado.
-
-Esses testes não comprovam controlador de gameplay com deslocamento real, câmera final, colisões, dano, IA ou progressão. O protótipo Ursina permanece separado e não será apagado.
-
-## 5. Primeira fatia jogável
-
-Prioridade: produzir um caminho pequeno, mas completo:
-1. Inicialização e tela inicial.
-2. Seleção de personagem e entrada no mundo.
-3. Personagem em terceira pessoa com movimento e câmera.
-4. Região inicial greybox com chão, caminho, limites e ponto seguro.
-5. Um inimigo com estados básicos.
-6. Ataques, dano, reação e morte.
-7. XP e primeiro nível.
-8. HUD mínimo para vida, nível, XP e alvo.
-9. Um ponto de interesse ou NPC para demonstrar interação.
-
-Somente depois que o ciclo acima estiver jogável avançar para criação avançada de personagem, cidade maior, mais raças/classes, várias regiões e polimento.
-
-## 6. Etapas e critérios de avanço
-
-### M0 — Preparação Unity
-- Confirmar Unity Hub e conta.
-- Configurar downloads, Editors e projetos no disco D:.
-- Instalar Unity 6000.5.9f1 e Windows Build Support.
-- Criar projeto Universal 3D (URP).
-- Configurar Git e documentação no novo projeto.
-
-**Gate:** Editor abre o projeto no caminho correto do D:; primeiro commit criado; o protótipo Ursina continua intacto.
-
-### M1 — Greybox jogável
-- Criar Boot/FrontEnd/Loading/World básicos.
-- Criar jogador provisório, câmera, terreno simples, limites e um inimigo.
-- Implementar o ciclo de entrar no mundo, lutar e chegar ao primeiro ponto seguro.
-
-**Gate:** o ciclo básico pode ser concluído sem travamentos, queda infinita ou referências ausentes.
-
-### M2 — Personagem
-- Integrar um personagem completo primeiro.
-- Ajustar rig, animações, arma e câmera.
-- Fazer a primeira tela de seleção/criação com arte provisória.
-- Só expandir o elenco após validar o pipeline em um personagem.
-
-**Gate:** o personagem se move, ataca e segura a arma corretamente na Game View.
-
-### M3 — Combate e progressão
-- Implementar alvo, ataque, dano, estados do inimigo, XP e nível.
-- Adicionar feedback visual e sonoro com recursos gratuitos/licenciados.
-
-**Gate:** derrotar inimigo, receber XP e subir de nível funciona em teste repetível.
-
-### M4 — Mundo e cidade
-- Ampliar o mapa com região inicial, estrada, transição de bioma e cidade.
-- Adicionar NPCs, colisões, iluminação e navegação.
-
-**Gate:** o jogador percorre o trajeto completo sem ficar preso ou sair dos limites.
-
-### M5 — Polimento
-- Corrigir câmera, animações, interface, som e desempenho.
-- Medir FPS na máquina do proprietário.
-
-**Gate:** regressão completa do caminho jogável aprovada pelo proprietário.
-
-### M6 — Build e documentação
-- Criar build Windows.
-- Testar em pasta limpa.
-- Registrar vídeos, capturas, licenças, custos e problemas conhecidos.
-
-**Gate:** build inicia fora do editor e completa a primeira fatia jogável.
-
-## 7. Regras de produção
-
-1. Uma tarefa por vez, com teste explícito.
-2. Não marcar como concluído sem executar o teste e observar o resultado.
-3. Manter screenshots e registros de progresso em marcos importantes.
-4. Fazer commits frequentes e manter histórico TXT.
-5. Não editar ou excluir o protótipo Ursina sem pedido explícito e backup.
-6. Não limpar ou modificar o disco C: para preparar o projeto Unity; direcionar os dados grandes do Lumina para D:.
-7. Se o download/instalação falhar, registrar a mensagem e diagnosticar antes de repetir.
-8. Manter objetivo de custo externo zero.
-
-## 8. Estado e bloqueios atuais
-
-- Unity Hub: proprietário confirmou que instalou, abriu e entrou na conta.
-- Unity Editor: ainda não confirmado instalado.
-- Falha de download: pendente de diagnóstico.
-- Espaço medido no momento do diagnóstico: C: ~0,32 GB livres; D: ~124,31 GB livres.
-- O proprietário não quer alterar o C: por causa de outro projeto.
-- Pastas já criadas no D:
+### Armazenamento
+- Na medição: C: aproximadamente 0,32 GB livres; D: aproximadamente 120,38 GB livres.
+- O proprietário pediu para não limpar, mover ou modificar o outro projeto no C:.
+- Pastas criadas:
+  - D:\Unity\Downloads
+  - D:\Unity\Temp
   - D:\Unity\Hub\Editor
   - D:\Unity\Hub\Downloads
   - D:\Unity\Projects
-- Ainda é necessário confirmar os caminhos de instalação/download/projeto dentro do Hub.
+- TEMP/TMP foram alterados somente dentro da sessão CMD usada na instalação. Não foi feita alteração permanente.
 
-## 9. Critério de conclusão de tarefa
+### Outros instaladores
+- D:\Unity\Downloads\vs_Community.exe existe, mas tamanho, assinatura, origem e instalação ainda não foram verificados. Não executar até confirmar necessidade e legitimidade.
 
-Uma tarefa só pode ser marcada como concluída quando:
-- o código/asset está no local correto;
-- o Editor/projeto abre;
-- o teste específico foi executado;
-- não há erro novo no Console;
-- a alteração não quebra o ciclo já funcional;
-- o resultado visual foi observado na Game View;
-- DEVLOG, TODO e Git foram atualizados quando a mudança for significativa.
+## 4. Limites de reutilização do Oldcraft
+
+Usar relatório, filmagens, conceitos e Build Kit como referência de processo, organização, escopo e apresentação. A build compilada não é projeto-fonte. Não extrair código ou assets protegidos de jogos comerciais, nem reutilizar conteúdo de terceiros sem licença/autorização.
+
+Podemos reconstruir com código próprio sistemas comuns de RPG: menu, seleção, câmera, movimentação, combate, inimigos, XP, missões, HUD, regiões e cidade. Manter nomes, marca, lore, personagens e identidade do Lumina originais.
+
+## 5. Protótipo Ursina preservado
+
+O repositório antigo contém seis GLTFs Quaternius, licença CC0 junto aos arquivos e scripts de teste:
+- teste_pbr_panda.py: proprietário observou personagem caindo/desmaiando, sem espada.
+- teste_ursina_pbr.py: andar, correr e atacar, sem espada.
+- teste_espada.py: andar, correr e atacar com espada; melhor referência visual.
+- main.py: protótipo inicial, ainda não integrado.
+- main_lumina_integrado.py: arquivo local não rastreado, não executado/aprovado; revisar antes de versionar.
+
+Esses testes não comprovam ainda um controlador completo com câmera final, colisões, inimigos, dano ou progressão. O projeto Ursina não será apagado.
+
+## 6. MVP — primeira fatia jogável
+
+1. Abrir o jogo.
+2. Tela inicial/entrada e seleção simples.
+3. Personagem 3D controlável em terceira pessoa.
+4. Caminhar/correr e animação coerente; arma segura corretamente.
+5. Região greybox com chão, caminho, limites e ponto seguro.
+6. Um inimigo que detecta/persegue, recebe dano e morre.
+7. Combate com feedback.
+8. XP e primeiro nível.
+9. HUD para vida, nível, XP e alvo.
+10. Fluxo completo testável do início até derrotar um inimigo e chegar ao primeiro ponto seguro.
+
+## 7. Etapas
+
+### M0 — Preparação e licença
+- Confirmar licença Unity Personal.
+- Confirmar o Editor no Hub e os destinos no D:.
+- Criar projeto URP no D:.
+- Configurar Git e documentação do projeto Unity.
+
+**Gate:** Editor abre projeto URP sem erro, licença ativa e primeiro checkpoint Git; protótipo Ursina intacto.
+
+### M1 — Greybox jogável
+- Boot, FrontEnd, Loading e World básicos.
+- Personagem provisório, câmera, terreno simples, limites e um inimigo.
+- Ciclo de entrar no mundo, lutar e alcançar ponto seguro.
+
+**Gate:** fluxo básico concluído sem travamento, queda infinita ou referência ausente.
+
+### M2 — Personagem
+- Pipeline completo para um personagem.
+- Rig, animações, arma e câmera.
+- Tela inicial e seleção provisória.
+
+**Gate:** personagem se move, ataca e segura arma corretamente na Game View.
+
+### M3 — Combate e progressão
+- Alvo, ataques, dano, estados de inimigo, XP e nível.
+- Feedback visual/sonoro gratuito/licenciado.
+
+**Gate:** derrotar inimigo e receber XP em teste repetível.
+
+### M4 — Mundo
+- Região inicial, estrada, transição de bioma, campos e cidade.
+- NPCs, colisões, iluminação e navegação.
+
+**Gate:** trajeto completo sem ficar preso ou sair dos limites.
+
+### M5 — Polimento
+- Câmera, animações, interface, som e desempenho.
+
+**Gate:** regressão do caminho jogável e medição de FPS.
+
+### M6 — Build e documentação
+- Build Windows testada em pasta limpa.
+- Capturas, vídeos, licenças, custos e problemas conhecidos.
+
+**Gate:** build inicia fora do Editor e completa o MVP.
+
+## 8. Restrições de operação
+
+- Não limpar o disco C: por causa do outro projeto.
+- Manter downloads, Editor, temporários da instalação e novo projeto Lumina no D: quando configurável.
+- Não mover o perfil do Windows nem criar junctions/symlinks para contornar o TEMP sem autorização.
+- Não reinstalar Hub/Editor sem um diagnóstico claro.
+- Não instalar Visual Studio antes de verificar assinatura/origem e necessidade.
+- Atualizar TODO, DEVLOG, histórico TXT e Git nos marcos.
+- Custo externo pretendido: R$ 0.
