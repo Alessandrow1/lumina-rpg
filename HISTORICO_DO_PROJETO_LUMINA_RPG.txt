@@ -213,3 +213,71 @@ primeiro commit é guardar com segurança o ponto de partida e os testes que
 comprovaram o carregamento dos modelos e a fixação inicial da espada.
 
 Fim do histórico.
+
+
+12. BACKUP DE ESTADO — 03/11/2026 (CHECKPOINT DE PLANEJAMENTO UNITY)
+---------------------------------------------------------------------
+Objetivo deste checkpoint:
+- Registrar os resultados dos três testes relatados pelo proprietário.
+- Preservar o estado do protótipo Ursina/Panda3D.
+- Registrar a decisão de reconstruir a estrutura e o fluxo de jogo do World of Oldcraft em um projeto Unity separado, adaptando-o gradualmente para a identidade Lumina.
+- Registrar o estado da instalação do Unity e os caminhos planejados no disco D:.
+
+ESTADO DO GIT ANTES DESTE CHECKPOINT:
+- Repositório: Alessandrow1/lumina-rpg
+- Branch: main
+- Último commit confirmado localmente e remotamente antes deste registro:
+  6bb835f40dbbc7a77dee74cfaf6f1f25047880f8
+- Mensagem: "docs: establish Lumina RPG production plan (M0)"
+- O proprietário informou que git status estava limpo e main estava sincronizada com origin/main.
+- Este checkpoint será publicado como novos commits documentais no GitHub. Depois da publicação, a cópia local deverá executar git pull --ff-only para receber estes commits.
+
+ESTADO DOS TESTES LOCAIS (RESULTADOS RELATADOS PELO PROPRIETÁRIO):
+- teste_pbr_panda.py: o personagem aparece em uma animação que parece cair/desmaiar; não há espada. Resultado visual não aprovado como base de gameplay.
+- teste_ursina_pbr.py: o personagem reproduz animações de andar, correr e atacar; não há espada.
+- teste_espada.py: o personagem reproduz andar/correr/ataque com a espada equipada. É o melhor protótipo visual atual para referência do personagem e equipamento.
+- Observação: esses resultados são os relatos visuais do proprietário. Não equivalem ainda a um controlador completo com deslocamento real, colisões, combate com dano ou câmera de gameplay.
+- A espada do teste está anexada ao osso Fist.R. O encaixe ainda pode precisar de refinamento.
+- main.py permanece como protótipo antigo e não foi substituído nem integrado.
+- Os seis GLTFs Quaternius e LICENSE-CC0.txt permanecem em assets/models/characters/.
+- Nenhum sistema completo de RPG (inimigos, dano, XP, missões, salvamento ou mundo jogável) foi considerado concluído neste checkpoint.
+
+DECISÃO DE DIREÇÃO DO PROJETO:
+- O proprietário decidiu usar World of Oldcraft como referência próxima para reconstruir primeiro a estrutura, as telas, o fluxo de jogo, o mundo e os sistemas principais, e depois adaptar o resultado à identidade própria do Lumina RPG.
+- A reconstrução será feita em um projeto Unity separado, mantendo o projeto Ursina atual intacto como protótipo de referência e backup.
+- O download do World of Oldcraft é uma build compilada para Windows, não o projeto-fonte Unity editável. O Build Kit contém especificações, regras, conhecimentos e scripts auxiliares, mas não o código-fonte C# completo do jogo.
+- Usar o relatório, os conceitos, as filmagens e o Build Kit como referência de produção. Não extrair nem reutilizar código, modelos, texturas, interface, marcas ou outros materiais protegidos de um jogo comercial sem licença/autorização. A implementação do Lumina deve usar código próprio e assets gratuitos/licenciados, registrando as licenças.
+
+ESTADO DO UNITY EM 03/11/2026:
+- O proprietário confirmou que baixou e instalou o Unity Hub, abriu o aplicativo e entrou na conta.
+- O executável do Hub não foi localizado pelos caminhos padrão testados; isso não significa que o Hub não esteja instalado, pois o proprietário confirmou que o abriu.
+- Ainda não há confirmação de que qualquer Unity Editor esteja instalado.
+- O download do Editor falhou; a causa não foi comprovada.
+- A pasta padrão de logs em %APPDATA%\UnityHub\logs não foi encontrada durante a tentativa de diagnóstico.
+- Espaço livre medido naquele momento: C: aproximadamente 0,32 GB; D: aproximadamente 124,31 GB.
+- O proprietário pediu explicitamente para não limpar, mover ou modificar o disco C: por causa de outro projeto.
+- Pastas criadas e verificadas no D::
+  D:\Unity\Hub\Editor
+  D:\Unity\Hub\Downloads
+  D:\Unity\Projects
+- Ainda falta confirmar visualmente nas configurações do Unity Hub:
+  Installs Location = D:\Unity\Hub\Editor
+  Downloads Location = D:\Unity\Hub\Downloads
+  Projects Location = D:\Unity\Projects
+- Versão planejada conforme o Build Kit: Unity 6000.5.9f1, template Universal 3D (URP), com Windows Build Support.
+- O Unity Hub pode continuar instalado no caminho escolhido pelo instalador. O objetivo é colocar Editor, downloads e projeto do Lumina no D:, sem mexer deliberadamente no outro projeto no C:. Não prometer que o Windows ou o próprio Hub não gravará nenhum arquivo pequeno de configuração/cache no perfil do usuário.
+
+PRÓXIMAS AÇÕES:
+1. Confirmar as três localizações nas configurações do Unity Hub.
+2. Diagnosticar a falha de download sem limpar ou alterar o C:; verificar downloads, permissões e logs disponíveis.
+3. Instalar Unity 6000.5.9f1 e Windows Build Support em D:\Unity\Hub\Editor.
+4. Criar D:\Unity\Projects\Lumina-Unity como projeto Universal 3D (URP).
+5. Reproduzir primeiro o fluxo jogável e a estrutura de produção do Oldcraft com implementação própria e recursos autorizados/gratuitos.
+6. Manter D:\rpg-Lumina como protótipo Ursina preservado; não apagar, migrar ou sobrescrever seus arquivos durante a preparação Unity.
+
+RESTRIÇÃO DE CUSTO:
+- Objetivo declarado: custo externo de R$ 0.
+- Não contratar APIs, geradores, assinaturas ou assets pagos.
+- Verificar as condições/licenças das ferramentas e assets gratuitos antes de usá-los ou distribuí-los.
+
+Fim do checkpoint de 03/11/2026.
