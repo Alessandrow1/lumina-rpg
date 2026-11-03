@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+*.log
+.venv/
+venv/
+env/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.idea/
+.vscode/
+drive-download-20261103T034945Z-1-001/
+drive-download-20261103T034945Z-1-001.zip
+voice_preview_voz aurora.mp3
+Preview.png
+teste_personagem.py
+*.blend
+*.fbx
+*.obj

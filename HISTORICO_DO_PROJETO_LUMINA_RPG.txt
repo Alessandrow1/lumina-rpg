@@ -1,0 +1,204 @@
+LUMINA RPG — HISTÓRICO DE DESENVOLVIMENTO E BACKUP
+=================================================
+Data deste registro: 03/11/2026
+Diretório local do projeto: D:\rpg-Lumina
+Repositório remoto: https://github.com/Alessandrow1/lumina-rpg
+Branch planejada: main
+
+IMPORTANTE SOBRE O ESTADO DO BACKUP
+-----------------------------------
+Este arquivo registra o trabalho realizado até agora. A criação do commit e o
+push para o GitHub ainda dependem da execução local do script
+backup_lumina_git.bat no computador do desenvolvedor.
+Na última verificação feita no GitHub, o repositório estava público, vazio
+(size 0), com branch padrão main e permissão de push disponível.
+
+1. TECNOLOGIAS E AMBIENTE
+-------------------------
+- Sistema operacional: Windows.
+- Python instalado: Python 3.12.
+- Motor do protótipo: Ursina Engine.
+- Renderização e animação: Panda3D.
+- Carregador glTF: panda3d-gltf 1.3.0.
+- Renderização PBR: simplepbr, instalado como dependência do conjunto Panda3D.
+- Git instalado: Git for Windows 2.56.0.windows.4.
+
+2. ESTADO INICIAL DO PROTÓTIPO
+------------------------------
+O arquivo main.py original está na raiz do projeto. Ele contém um protótipo
+simples com:
+- Menu de seleção de seis personagens: Cavaleiro, Mago, Elfo, Viking, Ninja
+  e Soldado.
+- Cenário básico com plano e obstáculos em cubos.
+- FirstPersonController, movimentação WASD e pulo.
+- Alternância entre primeira e terceira pessoa pela tecla C.
+
+ATENÇÃO: o main.py ainda é o protótipo original e NÃO foi integrado ao novo
+sistema de modelos glTF, ao renderizador PBR ou à espada. As experiências mais
+recentes foram feitas em scripts de teste separados. O caminho antigo do
+main.py aponta para assets/FBX, enquanto os modelos atualmente preparados para
+o projeto estão em assets/models/characters no formato glTF. Essa integração
+fica para a próxima etapa, depois do backup.
+
+3. PERSONAGENS 3D E LICENÇA
+---------------------------
+Foram selecionados e copiados para assets/models/characters estes seis modelos:
+- Knight_Male.gltf
+- Wizard.gltf
+- Elf.gltf
+- Viking_Male.gltf
+- Ninja_Male.gltf
+- Soldier_Male.gltf
+
+Também foi copiada a licença original para:
+assets/models/characters/LICENSE-CC0.txt
+
+Os modelos pertencem ao pacote LowPoly Models by Quaternius. O arquivo de
+licença fornecido com o pacote identifica CC0 1.0 Universal. A licença foi
+mantida junto dos modelos.
+
+Cada um dos seis arquivos glTF foi analisado em Python. Os buffers estavam
+embutidos nos próprios arquivos e a verificação não encontrou URIs externos
+para buffers ou imagens nos seis modelos examinados. Os tamanhos individuais
+ficaram aproximadamente entre 1,7 MB e 2,0 MB, totalizando cerca de 10,9 MB.
+
+4. ANIMAÇÕES DISPONÍVEIS
+------------------------
+Os seis personagens apresentam o mesmo conjunto de 17 animações:
+- Death
+- Defeat
+- Idle
+- Jump
+- PickUp
+- Punch
+- RecieveHit   (grafia exata encontrada no arquivo)
+- Roll
+- Run
+- Run_Carry
+- Shoot_OneHanded
+- SitDown
+- StandUp
+- SwordSlash
+- Victory
+- Walk
+- Walk_Carry
+
+O Actor do Panda3D carregou Knight_Male.gltf e getAnimNames() reconheceu
+as animações acima. Portanto, o esqueleto e as animações estão disponíveis
+para uso no projeto.
+
+5. ESQUELETO E PONTO DE FIXAÇÃO DA ARMA
+---------------------------------------
+A inspeção do JSON glTF de Knight_Male encontrou os nós do esqueleto, incluindo:
+- Fist.L
+- Fist.R
+- LowerArm.L / LowerArm.R
+- UpperArm.L / UpperArm.R
+- Head, Neck, Torso, Hips e ossos das pernas.
+
+O ponto de fixação escolhido para a espada é Fist.R, a mão/punho direito.
+A chamada Actor.exposeJoint(None, "modelRoot", "Fist.R") funcionou e
+retornou o nó:
+render/CharacterArmature/__Actor_modelRoot/Fist.R
+
+Isso confirma que é possível anexar equipamento ao osso animado da mão.
+
+6. INVESTIGAÇÃO DA RENDERIZAÇÃO
+-------------------------------
+- Os arquivos glTF abriram com o gltf-viewer instalado pelo panda3d-gltf.
+- A prévia original Preview.png foi consultada. O Cavaleiro do pacote possui
+  armadura predominantemente cinza-escura, com detalhes marrons e vermelhos.
+  Portanto, a aparência escura da armadura, por si só, não significa arquivo
+  corrompido.
+- Knight_Male.gltf contém cinco materiais: Skin, Armor, Armor_Dark, Detail e
+  Red. Não foram encontradas texturas externas no arquivo examinado.
+- O experimento com gltf-legacy-materials true dentro da Ursina não resolveu
+  o problema visual e produziu uma aparência preta/deformada. Essa abordagem
+  foi abandonada.
+- O teste nativo Panda3D + simplepbr em teste_pbr_panda.py carregou o modelo
+  sem a deformação visual observada nos primeiros testes. O usuário confirmou
+  que o resultado ficou bem melhor e sem bug visual.
+- O teste integrado com Ursina + simplepbr + Actor em teste_ursina_pbr.py
+  também abriu corretamente, conforme confirmação do usuário.
+
+7. PRIMEIRO EQUIPAMENTO: ESPADA
+-------------------------------
+Foi criado um protótipo de espada diretamente em teste_espada.py. A espada é
+composta por geometria criada no próprio código, sem modificar os arquivos
+originais do personagem. Os componentes incluem:
+- Lâmina afilada em malha própria.
+- Detalhe central da lâmina.
+- Guarda dourada e extremidades decorativas.
+- Cabo marrom semelhante a couro.
+- Anéis metálicos no cabo.
+- Pomo dourado e joia vermelha.
+
+A espada é anexada ao osso Fist.R. Ela acompanha as animações do braço. Foram
+corrigidos dois problemas encontrados durante os testes:
+- Importação do unlit_shader.
+- Uso de color.rgb32() para cores expressas em valores de 0 a 255.
+
+Controles do teste atual:
+- 1: Idle
+- 2: Walk
+- 3: Run
+- 4: SwordSlash
+- E: mostrar/guardar a espada
+
+O usuário confirmou que a aparência melhorou. Ainda faltam ajustes finos na
+orientação e no encaixe da empunhadura para que a lâmina não atravesse os dedos.
+A espada ainda é um protótipo visual; não existe sistema de inventário ou dano.
+
+8. SCRIPTS DE TESTE E SEU PAPEL
+-------------------------------
+- teste_pbr_panda.py: teste de carregamento nativo no Panda3D com simplepbr;
+  serviu para isolar a renderização PBR.
+- teste_ursina_pbr.py: teste de integração PBR com Ursina e Actor.
+- teste_espada.py: teste mais recente do Cavaleiro com espada anexada a Fist.R.
+- teste_personagem.py: experimento anterior com gltf-legacy-materials; não é
+  o teste recomendado e não deve ser usado como base do jogo.
+
+O backup recomendado inclui os testes úteis e pode excluir o teste_personagem.py
+obsoleto. O script de backup fornecido também exclui arquivos de download
+redundantes e o áudio de prévia da Aurora, que não pertence ao RPG.
+
+9. ARQUIVOS E PASTAS A MANTER NO BACKUP
+--------------------------------------
+- main.py
+- assets/models/characters/*.gltf
+- assets/models/characters/LICENSE-CC0.txt
+- teste_pbr_panda.py, se estiver presente
+- teste_ursina_pbr.py, se estiver presente
+- teste_espada.py
+- este histórico
+- README.md, .gitignore e requirements.txt (criados pelo script de backup,
+  caso ainda não existam)
+
+Arquivos deliberadamente excluídos do Git:
+- drive-download-20261103T034945Z-1-001.zip (pacote duplicado de ~76 MB).
+- drive-download-20261103T034945Z-1-001/ (extração completa duplicada com
+  Blends, FBX, glTF e OBJ; os seis glTF necessários já foram copiados para
+  assets/models/characters).
+- voice_preview_voz aurora.mp3 (arquivo relacionado à Aurora, não ao RPG).
+- teste_personagem.py (experimento visual antigo e substituído).
+- caches Python, ambientes virtuais, builds e arquivos temporários.
+
+10. PRÓXIMAS ETAPAS DO LUMINA RPG
+---------------------------------
+1. Concluir o encaixe e a orientação da espada na mão direita.
+2. Integrar o carregamento glTF e simplepbr ao main.py, sem quebrar o protótipo.
+3. Reaproveitar o sistema de anexar equipamentos a ossos para os outros
+   personagens.
+4. Criar movimentação e troca automática entre Idle, Walk, Run e Jump.
+5. Implementar combate, colisões, dano, inimigos e sistema de equipamentos.
+6. Desenvolver inventário, atributos, progressão, missões e mundo do RPG.
+
+11. OBSERVAÇÃO DE BACKUP
+------------------------
+Este backup deve preservar o estado funcional de testes alcançado até agora.
+Não considerar a integração final dos modelos e da espada concluída: o
+main.py ainda precisa ser atualizado em uma etapa posterior. O objetivo deste
+primeiro commit é guardar com segurança o ponto de partida e os testes que
+comprovaram o carregamento dos modelos e a fixação inicial da espada.
+
+Fim do histórico.
