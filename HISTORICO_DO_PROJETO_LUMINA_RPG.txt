@@ -5,13 +5,24 @@ Diretório local do projeto: D:\rpg-Lumina
 Repositório remoto: https://github.com/Alessandrow1/lumina-rpg
 Branch planejada: main
 
-IMPORTANTE SOBRE O ESTADO DO BACKUP
------------------------------------
-Este arquivo registra o trabalho realizado até agora. A criação do commit e o
-push para o GitHub ainda dependem da execução local do script
-backup_lumina_git.bat no computador do desenvolvedor.
-Na última verificação feita no GitHub, o repositório estava público, vazio
-(size 0), com branch padrão main e permissão de push disponível.
+ESTADO DO BACKUP — PUBLICADO E VERIFICADO
+-------------------------------------------
+O primeiro backup foi publicado com sucesso no GitHub em 03/11/2026.
+- Repositório: https://github.com/Alessandrow1/lumina-rpg
+- Branch: main
+- Commit: 6d3a8aa62ec2b3aa9883099fa7dc5a88026c06af
+- Mensagem: "backup: estado do Lumina RPG em 2026-11-03"
+- A branch local foi configurada para acompanhar origin/main.
+- A execução do script terminou com "Everything up-to-date".
+- A árvore remota foi consultada e confirmou os arquivos listados neste
+  histórico, incluindo os seis modelos glTF, a licença CC0, main.py,
+  os scripts de teste, requirements.txt, README.md e este TXT.
+
+O comando git status também mostrou alguns arquivos não rastreados (??):
+scripts .bat auxiliares, ZIPs do kit de backup e a pasta assets/glTF
+duplicada. Esses itens ficaram fora do commit deliberadamente; os seis
+modelos usados pelo projeto estão versionados em
+assets/models/characters/.
 
 1. TECNOLOGIAS E AMBIENTE
 -------------------------
